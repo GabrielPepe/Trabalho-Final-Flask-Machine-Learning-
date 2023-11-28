@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <title>RF</title>
+  </head>
+
+  <body>
+    <div class="card__inserir">
+      <div class="lista">
+        <header>
+          <nav>
+            <ul class="navbar-links">
+              <ul class="navbar-links">
+                <li>
+                  <a href="/">K Neighbors</a>
+                </li>
+                <li>
+                  <a href="/decisionTree">Decision Tree</a>
+                </li>
+                <li class="active">
+                  <a href="/randomForest">Random Forest</a>
+                </li>
+                <li>
+                  <a href="/mlp">MLP</a>
+                </li>
+              </ul>
+            </ul>
+          </nav>
+        </header>
+        <h1>RF</h1>
+
+        <form id="myForm" method="POST">
+          <label for="randoms">Random State:</label><br />
+          <input
+            type="number"
+            min="0"
+            required
+            id="randoms"
+            name="randoms"
+          /><br /><br />
+
+          <label for="parametro1">N estimators:</label><br />
+          <input
+            type="number"
+            min="1"
+            required
+            id="parametro1"
+            name="parametro1"
+          /><br /><br />
+
+          <label for="parametro2">Max depth:</label><br />
+          <input
+            type="number"
+            min="1"
+            required
+            id="parametro2"
+            name="parametro2"
+          /><br /><br />
+
+          <input
+            type="hidden"
+            id="classificador"
+            name="classificador"
+            value="rf"
+          />
+
+          <input type="submit" value="Enviar" />
+        </form>
+        {% if exibir_imagem %}
+        <div>
+          <img src="{{ url_for('static', filename=img) }}" alt="Minha Imagem" />
+          <br /><br />
+          <p>Accuracy: {{ accuracy }}</p>
+          <p>Precision: {{ precision }}</p>
+          <p>Recall: {{ recall }}</p>
+          <p>F1-Score: {{ f1 }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

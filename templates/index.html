@@ -1,0 +1,83 @@
+<!-- pagina do classificador KNN-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <title>Knn</title>
+  </head>
+
+  <body>
+    <div class="card__inserir">
+      <div class="lista">
+        <header>
+          <nav>
+            <ul class="navbar-links">
+              <li class="active">
+                <a href="/">K Neighbors</a>
+              </li>
+              <li>
+                <a href="/decisionTree">Decision Tree</a>
+              </li>
+              <li>
+                <a href="/randomForest">Random Forest</a>
+              </li>
+              <li>
+                <a href="/mlp">MLP</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <h1>KNN</h1>
+
+        <form id="myForm" method="POST">
+          <!-- input do Random state -->
+          <label for="randoms">Random State</label><br />
+          <input
+            type="number"
+            required
+            min="0"
+            id="randoms"
+            name="randoms"
+          /><br /><br />
+
+          <!-- input do primeiro parametro do KNN -->
+          <label for="knn">KNN</label><br />
+          <input
+            type="number"
+            required
+            min="1"
+            id="parametro1"
+            name="parametro1"
+          /><br /><br />
+
+          <!-- um input escondido indica para a função do machine learning qual classificador será chamado -->
+          <input
+            type="hidden"
+            id="classificador"
+            name="classificador"
+            value="knn"
+          />
+
+          <input type="submit" value="Enviar" />
+        </form>
+
+        <!-- depois que o usuário der submit, se não ouver erro e a variavel "exibir_imagem" existir, da display na imagem e nas  métricas -->
+        {% if exibir_imagem %}
+        <div>
+          <img src="{{ url_for('static', filename=img) }}" alt="Minha Imagem" />
+          <br /><br />
+          <p>Accuracy: {{ accuracy }}</p>
+          <p>Precision: {{ precision }}</p>
+          <p>Recall: {{ recall }}</p>
+          <p>F1-Score: {{ f1 }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

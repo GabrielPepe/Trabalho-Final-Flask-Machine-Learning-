@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <title>MLP</title>
+  </head>
+
+  <body>
+    <div class="card__inserir">
+      <div class="lista">
+        <header>
+          <nav>
+            <ul class="navbar-links">
+              <li>
+                <a href="/">K Neighbors</a>
+              </li>
+              <li>
+                <a href="/decisionTree">Decision Tree</a>
+              </li>
+              <li>
+                <a href="/randomForest">Random Forest</a>
+              </li>
+              <li class="active">
+                <a href="/mlp">MLP</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <h1>MLP</h1>
+
+        <form id="myForm" method="POST">
+          <label for="randoms">Random State:</label><br />
+          <input
+            type="number"
+            required
+            min="0"
+            id="randoms"
+            name="randoms"
+          /><br /><br />
+
+          <label for="parametro1">hidden layer sizes:</label><br />
+          <input
+            type="number"
+            required
+            min="1"
+            id="parametro1"
+            name="parametro1"
+          /><br /><br />
+
+          <label for="parametro2">activation:</label><br />
+          <select id="parametro2" required name="parametro2">
+            <option value="relu">relu</option>
+            <option value="identity">identity</option>
+            <option value="logistic">logistic</option>
+            <option value="tanh">tanh</option></select
+          ><br /><br />
+
+          <input
+            type="hidden"
+            id="classificador"
+            name="classificador"
+            value="mlp"
+          />
+
+          <input type="submit" value="Enviar" />
+        </form>
+        {% if exibir_imagem %}
+        <div>
+          <img src="{{ url_for('static', filename=img) }}" alt="Minha Imagem" />
+          <br /><br />
+          <p>Accuracy: {{ accuracy }}</p>
+          <p>Precision: {{ precision }}</p>
+          <p>Recall: {{ recall }}</p>
+          <p>F1-Score: {{ f1 }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
